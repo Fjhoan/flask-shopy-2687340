@@ -12,11 +12,21 @@ from flask_sqlalchemy import SQLAlchemy
 #dependencia de la migraciones
 from flask_migrate import Migrate
 
+#importar el blueprint
+from .mi_blueprint import mi_blueprint
+
+#importar products
+from app.products import products
+
 #crear el objeto Flask
 app = Flask(__name__)
 
 #configuración del objeto Flask
 app.config.from_object(Config)
+
+#Vincular blueprints del proyecto
+app.register_blueprint(mi_blueprint)
+app.register_blueprint(products)
 
 #crear el objeto de los modelos
 db = SQLAlchemy(app)
